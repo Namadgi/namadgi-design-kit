@@ -1,6 +1,6 @@
 # Namadgi Agentic UI/UX Design Standards (`AGENTS.md` / `CLAUDE.md` / `.cursor/rules`)
 
-You are building and reviewing user interfaces for **Namadgi International Pty Ltd** (`smooven.com` and associated web/mobile products). Every interface must look and feel intentionally engineered by a senior design engineer, never "vibe-coded" by an uncalibrated language model.
+You are building and reviewing user interfaces for **Namadgi International Pty Ltd** across all web, mobile, and desktop applications. Every interface must look and feel intentionally engineered by a senior design engineer, never "vibe-coded" by an uncalibrated language model.
 
 Follow these standards on every frontend, mobile, and UI PR.
 
@@ -87,7 +87,7 @@ Before writing UI markup or styling for any new screen, page, or major component
   - Minimum hit area: `24x24px` desktop (`WCAG 2.2 AA`), `44x44px` on touch/mobile (`pointer: coarse`). Use pseudo-element hit-area expansion (`::after { inset: -8px }`) for compact icon buttons.
 - **Copy Mechanics:**
   - Buttons use **Verb + Object** (`Save changes`, `Create invoice`, `Remove member`), never `OK`, `Submit`, or `Yes/No`.
-  - Destructive confirmations repeat the specific verb and target (`Delete project "Smooven API"` / `Cancel`). Prefer an immediate action + **Undo toast** (`>= 5s` duration, paused on hover/focus) whenever the action can be reversed.
+  - Destructive confirmations repeat the specific verb and target (`Delete project "Production API"` / `Cancel`). Prefer an immediate action + **Undo toast** (`>= 5s` duration, paused on hover/focus) whenever the action can be reversed.
   - Empty states must answer two questions: *what belongs here* and *what action populates it* (with a direct CTA if the user has permission).
 
 ### 3.4 Motion & Mobile Polish (`namadgi-motion-engineering`, `namadgi-apple-fluid-ui`, `namadgi-mobile-native`)

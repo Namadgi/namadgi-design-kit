@@ -59,7 +59,7 @@ cd namadgi-design-kit
 ./install.sh --global-claude
 ```
 
-### 2. Install into a Product Repository (e.g. `smooven-web`, `smooven-app`)
+### 2. Install into a Project Repository
 ```bash
 ./install.sh --target /path/to/product-repo
 ```
