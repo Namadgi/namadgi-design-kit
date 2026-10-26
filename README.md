@@ -14,12 +14,47 @@ Uncalibrated AI coding agents default to unmistakable "vibe-coded" visual tropes
 
 ---
 
+## Set It Up With Your Agent
+
+**Fastest path:** open your AI agent (Google Antigravity, Claude Code, or Cursor) inside the project repository you work in and paste this prompt:
+
+```text
+Read https://github.com/Namadgi/namadgi-design-kit (or Confluence page 4224942123 via twg) and set up the Namadgi UI/UX Design Kit globally and in this project for me.
+```
+
+### Instructions for the Agent Doing the Setup
+
+If you are an AI agent reading this repository or the Confluence guide, carry out the following steps for the developer:
+
+1. **Clone `namadgi-design-kit` to a temporary directory:**
+   ```bash
+   rm -rf /tmp/namadgi-design-kit
+   git clone https://github.com/Namadgi/namadgi-design-kit.git /tmp/namadgi-design-kit
+   ```
+2. **Run the installer for both global agent skills and the developer's active project repository:**
+   Execute `/tmp/namadgi-design-kit/install.sh` (outside the sandbox if your environment sandboxes writes to `$HOME`):
+   ```bash
+   /tmp/namadgi-design-kit/install.sh --global-agy --global-claude --target "<CURRENT_PROJECT_ROOT>"
+   ```
+   - `--global-agy` installs all 12 `namadgi-*` skills into `~/.gemini/config/skills/` (available across every project in Google Antigravity).
+   - `--global-claude` installs all 12 `namadgi-*` skills into `~/.claude/skills/` (available across every project in Claude Code).
+   - `--target "<CURRENT_PROJECT_ROOT>"` installs project-scoped skills (`.agents/skills/namadgi-*` and `.claude/skills/namadgi-*`), the Cursor rule (`.cursor/rules/namadgi-design-standards.mdc`), the static pre-PR scanner (`scripts/audit-vibe-slop.sh`), and appends the always-on `<!-- NAMADGI-DESIGN-STANDARDS -->` rule block to `AGENTS.md` and `CLAUDE.md` without overwriting existing project instructions.
+3. **Verify the installation and clean up:**
+   - Confirm that `~/.gemini/config/skills/namadgi-ui-craft/SKILL.md`, `~/.claude/skills/namadgi-ui-craft/SKILL.md`, and `<CURRENT_PROJECT_ROOT>/scripts/audit-vibe-slop.sh` exist.
+   - Remove the temporary clone: `rm -rf /tmp/namadgi-design-kit`.
+4. **Finish by telling the developer:**
+   - Which global skill directories and project files were created or updated.
+   - In **Google Antigravity**, restart the IDE once and check **Settings -> Customizations** to confirm the 12 `namadgi-*` skills are listed and `/namadgi-*` slash commands are active.
+   - Before raising any UI pull request, run `./scripts/audit-vibe-slop.sh <src-dir>` and invoke `/namadgi-interface-review` on the branch diff.
+
+---
+
 ## Repository Structure
 
 ```text
 namadgi-design-kit/
-├── README.md                                  # Quickstart, decision matrix, and attribution
-├── install.sh                                 # Installer for project repos or global AGY/Claude skills
+├── README.md                                  # Quickstart, agent instructions, decision matrix
+├── install.sh                                 # Installer for project repos and global AGY/Claude skills
 ├── rules/
 │   └── namadgi-design-standards.md            # Always-on AGENTS.md / CLAUDE.md / .cursor/rules baseline
 ├── scripts/
@@ -41,37 +76,19 @@ namadgi-design-kit/
 
 ---
 
-## Quickstart Installation
+## Manual Quickstart Installation
 
-Clone the public repository from the Namadgi GitHub organisation:
+If you prefer to run the installer manually in your terminal:
 
 ```bash
 git clone https://github.com/Namadgi/namadgi-design-kit.git
 cd namadgi-design-kit
-```
 
-### 1. Install Globally into Google Antigravity or Claude Code
-```bash
-# Install all 12 skills into ~/.gemini/config/skills/ (Antigravity)
-./install.sh --global-agy
+# Install globally for Antigravity + Claude Code AND wire your project repository in one step:
+./install.sh --global-agy --global-claude --target /path/to/product-repo
 
-# Install all 12 skills into ~/.claude/skills/ (Claude Code)
-./install.sh --global-claude
-```
-
-### 2. Install into a Project Repository
-```bash
-./install.sh --target /path/to/product-repo
-```
-This installs:
-- `.agents/skills/namadgi-*` (all 12 skills + on-demand reference libraries)
-- `.cursor/rules/namadgi-design-standards.mdc`
-- Appends the always-on `namadgi-design-standards.md` block into the repo's `AGENTS.md` and `CLAUDE.md`
-- `scripts/audit-vibe-slop.sh`
-
-### 3. Run the Pre-PR Anti-Vibe-Slop Scanner
-```bash
-./scripts/audit-vibe-slop.sh src/
+# Run the pre-PR anti-vibe-slop static scanner:
+/path/to/product-repo/scripts/audit-vibe-slop.sh /path/to/product-repo/src
 ```
 
 ---
@@ -98,9 +115,9 @@ This installs:
 ## Upstream Attribution & Curated Sources
 
 Curated and adapted for Namadgi International Pty Ltd from:
-1. **Emil Kowalski** (`github.com/emilkowalski/skills`) — `/design`, `/animations`, `/apple-design`, `/animate`
-2. **Jakub Krehel** (`github.com/jakubkrehel/skills`) — `better-ui`, `better-typography`, `better-colors`, `better-layout`, `better-a11y`, `better-writing`, `better-mobile`, `better-interface`, `interface-review`, `figma-build`, `break-ui`
-3. **Conard Li / Garden Skills** (`github.com/ConardLi/garden-skills`) — `web-design-engineer` and the 25 anchored style recipes
-4. **Elaya Design** (`github.com/elayadesign/ai-design-skills`) — `landing-page-design`
-5. **Meng To** (`github.com/MengTo/Skills`) — `design-Prompt-Architect`, `design-Mobile-Design-Thinking`, `workflow-Score-To-Target`
-6. **Owl-Listener / Designer Skills** (`github.com/Owl-Listener/designer-skills`) — `build-awwwards-quality-sites`
+1. **Emil Kowalski** (`github.com/emilkowalski/skills`): `/design`, `/animations`, `/apple-design`, `/animate`
+2. **Jakub Krehel** (`github.com/jakubkrehel/skills`): `better-ui`, `better-typography`, `better-colors`, `better-layout`, `better-a11y`, `better-writing`, `better-mobile`, `better-interface`, `interface-review`, `figma-build`, `break-ui`
+3. **Conard Li / Garden Skills** (`github.com/ConardLi/garden-skills`): `web-design-engineer` and the 25 anchored style recipes
+4. **Elaya Design** (`github.com/elayadesign/ai-design-skills`): `landing-page-design`
+5. **Meng To** (`github.com/MengTo/Skills`): `design-Prompt-Architect`, `design-Mobile-Design-Thinking`, `workflow-Score-To-Target`
+6. **Owl-Listener / Designer Skills** (`github.com/Owl-Listener/designer-skills`): `build-awwwards-quality-sites`
